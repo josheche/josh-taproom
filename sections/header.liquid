@@ -13,51 +13,50 @@
           Site name gets precedence with H1 tag on homepage, div on other pages.
         {% endcomment %}
         {% if request.page_type == 'index' %}
-          <h1 class="h2 site-header__logo">
-          {% else %}
-            <div class="h2 site-header__logo">
-            {% endif %}
-            {% if section.settings.logo %}
-              {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-              <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
-                {% capture logo_alt %}
-                  {{ section.settings.logo.alt | default: shop.name }}
-                {% endcapture %}
-                <img class="lazyload js" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ logo_alt | escape }}" style="max-width: {{ section.settings.logo_max_width }}px">
-                <noscript>
-                  {% capture image_size %}
-                    {{ section.settings.logo_max_width | escape }}x
-                  {% endcapture %}
-                  <img src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" style="max-width: {{ section.settings.logo_max_width }}px;">
-                </noscript>
-              </a>
-            {% else %}
-              <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
-            {% endif %}
-            {% if request.page_type == 'index' %}
-            </h1>
+        <h1 class="h2 site-header__logo">
         {% else %}
-          </div>
+        <div class="h2 site-header__logo">
+        {% endif %}
+        {% if section.settings.logo %}
+          {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+            {% capture logo_alt %}
+              {{ section.settings.logo.alt | default: shop.name }}
+            {% endcapture %}
+            <img class="lazyload js" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ logo_alt | escape }}" style="max-width: {{ section.settings.logo_max_width }}px">
+            <noscript>
+              {% capture image_size %}
+                {{ section.settings.logo_max_width | escape }}x
+              {% endcapture %}
+              <img src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" style="max-width: {{ section.settings.logo_max_width }}px;">
+            </noscript>
+          </a>
+        {% else %}
+          <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+        {% endif %}
+        {% if request.page_type == 'index' %}
+        </h1>
+        {% else %}
+        </div>
         {% endif %}
       </div>
 
       {% if section.settings.align_logo == 'left' %}
-        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
-          {% include 'site-nav', linklist: section.settings.main_linklist %}
-        </nav>
+      <nav class="grid__item medium-up--one-half site-nav-wrapper" id="AccessibleNav" role="navigation">
+        {% include 'site-nav', linklist: section.settings.main_linklist %}
+      </nav>
       {% endif %}
     </div>
   </header>
 
   {% if section.settings.align_logo == 'center' %}
-    <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
-      {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
-    </nav>
+  <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
+    {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+  </nav>
   {% endif %}
 </div>
 
 {% schema %}
-
 {
   "name": {
     "da": "Overskrift",
@@ -81,6 +80,7 @@
     "zh-TW": "標頭"
   },
   "settings": [
+    
     {
       "type": "radio",
       "id": "align_logo",
@@ -466,6 +466,11 @@
         "zh-TW": "文字"
       },
       "default": "#fff"
+    },
+    {
+      "type": "image_picker",
+      "id": "featuredImage",
+      "label": "Featured Image"
     }
   ]
 }
