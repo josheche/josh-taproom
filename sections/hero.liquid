@@ -1,0 +1,42 @@
+<section class="hero" style="background-image: url({{ section.settings.heroImage | img_url: '2048x2048' }});">
+  <div class="hero-fixed-width__content">
+    <h1 class="hero-title">{{ section.settings.heroTitle }}</h1>
+    <h4 class="hero-text">
+      <p>{{ section.settings.heroText }}</p>
+    </h4>
+    <button class="btn" type="button">
+      <span class="">Shop Now</span>
+    </button>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "id": "heroTitle",
+        "type": "text",
+        "label": "Heading",
+        "default": "Hero Title"
+      },
+	  {
+        "id": "heroText",
+        "type": "text",
+        "label": "Sub Heading",
+        "default": "Hero Text"
+      },
+      {
+        "id": "heroImage",
+        "type": "image_picker",
+        "label": "Hero Image"
+      }
+	  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

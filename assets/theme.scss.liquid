@@ -360,6 +360,7 @@
 ==============================================================================*/
 $grid-medium: 750px;
 $grid-large: 990px;
+$grid-xlarge: 1185px;
 $grid-widescreen: 1400px;
 $grid-gutter: 30px;
 $grid-gutter-mobile: 22px;
@@ -371,6 +372,9 @@ $medium-up: 'medium-up';
 $large: 'large';
 $large-down: 'large-down';
 $large-up: 'large-up';
+$xlarge: 'xlarge';
+$xlarge-down: 'xlarge-down';
+$xlarge-up: 'xlarge-up';
 $widescreen: 'widescreen';
 
 /*============================================================================
@@ -1013,9 +1017,12 @@ $grid-breakpoints: (
   $medium '(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})',
   $medium-down '(max-width: #{$grid-large - 1})',
   $medium-up '(min-width: #{$grid-medium})',
-  $large '(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})',
-  $large-down '(max-width: #{$grid-widescreen - 1})',
+  $large '(min-width: #{$grid-large}) and (max-width: #{$grid-xlarge - 1})',
+  $large-down '(max-width: #{$grid-xlarge - 1})',
   $large-up '(min-width: #{$grid-large})',
+  $xlarge '(min-width: #{$grid-xlarge}) and (max-width: #{$grid-widescreen - 1})',
+  $xlarge-down '(max-width: #{$grid-widescreen - 1})',
+  $xlarge-up '(min-width: #{$grid-xlarge})',
   $widescreen '(min-width: #{$grid-widescreen})'
 );
 
@@ -1026,30 +1033,34 @@ $grid-breakpoints: (
     3. Apply a negative `margin-left` to negate the columns' gutters.
 ==============================================================================*/
 .grid {
-  @include clearfix();
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-left: -$grid-gutter;
-
-  @include media-query($small) {
-    margin-left: -$grid-gutter-mobile;
-  }
+  display: flex;
+  align-items: center;
 }
+// .grid {
+//   @include clearfix();
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+//   margin-left: -$grid-gutter;
 
-.grid__item {
-  float: left;
-  padding-left: $grid-gutter;
-  width: 100%;
+//   @include media-query($small) {
+//     margin-left: -$grid-gutter-mobile;
+//   }
+// }
 
-  @include media-query($small) {
-    padding-left: $grid-gutter-mobile;
-  }
+// .grid__item {
+//   float: left;
+//   padding-left: $grid-gutter;
+//   width: 100%;
 
-  &[class*="--push"] {
-    position: relative;
-  }
-}
+//   @include media-query($small) {
+//     padding-left: $grid-gutter-mobile;
+//   }
+
+//   &[class*="--push"] {
+//     position: relative;
+//   }
+// }
 
 /*============================================================================
   Reversed grids allow you to structure your source in the opposite
@@ -1345,10 +1356,8 @@ html {
 
 .main-content {
   display: block;
-  padding-top: $section-spacing-small;
 
   @include media-query($medium-up) {
-    padding-top: $section-spacing;
   }
 }
 
@@ -2220,15 +2229,38 @@ textarea {
     display: block;
   }
 }
+.site-nav-wrapper {
+  @include media-query($large-down) {
+    display: flex;
+    width: auto;
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
 
 .site-nav {
   position: relative;
   padding: 0;
   text-align: center;
-  margin: 25px 0;
-
+  @include media-query($large-down) {
+    display: none;
+    top: 68px;
+  }
+  >li {
+    @include media-query($xlarge-up) {
+      padding: 25px 0px;
+    }
+    @include media-query($large-down) {
+      padding: 25px;
+      &:not(:last-child) {
+        border-bottom: 1px solid #E1E6EB;
+      }
+    }
+  }
   a {
-    padding: 3px 10px;
+    @include media-query($xlarge-up) {
+      padding: 3px 10px;
+    }
   }
 }
 
@@ -2237,6 +2269,7 @@ textarea {
 }
 
 /*================ Site Nav Links ================*/
+
 .site-nav__link {
   display: block;
   white-space: nowrap;
@@ -2276,7 +2309,12 @@ textarea {
 .site-nav__link--button {
   border: none;
   background-color: transparent;
-  padding: 3px 10px;
+  @include media-query($xlarge-up) {
+    padding: 3px 10px;
+  }
+  @include media-query($large-down) {
+    padding: 0;
+  }
 
   @include media-query($medium-down) {
     font-size: $font-size-base;
@@ -2291,6 +2329,11 @@ textarea {
 /*================ Dropdowns ================*/
 .site-nav--has-dropdown {
   position: relative;
+  &:hover {
+    .site-nav__dropdown {
+      display: flex;
+    }
+  }
 }
 
 .site-nav--has-centered-dropdown {
@@ -2299,18 +2342,29 @@ textarea {
 
 .site-nav__dropdown {
   display: none;
-  position: absolute;
-  padding: 11px 30px 11px 0;
-  margin: 0;
-  z-index: $z-index-dropdown;
-  text-align: left;
-  border: 1px solid $color-border;
-  background: $color-bg;
-  left: -1px;
-  top: 41px;
-
+  
+  @include media-query($xlarge-up) {
+    position: absolute;
+    top: 80px;
+    max-width: $grid-xlarge;
+    margin: 0 auto;;
+    z-index: $z-index-dropdown;
+    text-align: left;
+    border: 1px solid $color-border;
+    background: $color-bg;
+  }
+  @include media-query($large-down) {
+    position: relative;
+  }
   .site-nav__link {
-    padding: 4px 15px 5px;
+    @include media-query($xlarge-up) {
+      padding: 5px 15px 5px;
+    }
+    @include media-query($large-down) {
+      padding: 5px 20px 5px 0px;
+
+    }
+
   }
 
   .site-nav--active-dropdown & {
@@ -2333,34 +2387,92 @@ textarea {
 
 // Centered dropdown
 .site-nav__dropdown--centered {
-  width: 100%;
   padding: 0;
   text-align: center;
+  @include media-query($xlarge-up) {
+    left: -50%;
+    right: -50%;
+  }
 }
 
 /*================ Child list ================*/
 .site-nav__childlist {
-  display: inline-block;
-  background: $color-bg;
-  padding: 11px 17px;
   text-align: left;
+  width: 100%;
+  @include media-query($xlarge-up) {
+    display: inline-block;
+    background: $color-bg;
+    padding: 30px 60px;
+  }
 }
 
 .site-nav__childlist-grid {
-  @include display-flexbox();
-  @include flex-wrap(wrap);
-  width: auto;
-  margin-bottom: -15px;
+  @include media-query($xlarge-up) {
+    @include display-flexbox();
+    justify-content: space-between;
+  }
 }
 
 .site-nav__childlist-item {
-  @include flex(0 1 auto);
-  margin-bottom: 15px;
+  @include media-query($xlarge-up) {
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+  @include media-query($large-down) {
+    &:not(:first-child) {
+      margin-top: 15px;
+    }
+  }
+}
+
+.site-nav__childlist-image {
+
+}
+
+.site-nav__grandchildlist-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, auto);
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+.site-nav__grandchildlist-item {
+  &:not(:nth-child(4n)) {
+    margin-bottom: 15px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .site-nav__child-link--parent {
-  font-weight: $font-weight-body--bold;
-  margin: 4px 0;
+  font-weight: 500;
+  @include media-query($xlarge-up) {
+    font-size: 19px;
+    line-height: 24px;
+  }
+  @include media-query($large-down) {
+    font-size: 16px;
+  }
+  >span.site-nav__label-border {
+    border-bottom: 1px solid #A6ACB3;
+    display: block;
+    margin-top: 5px;
+    width: 87px;
+    @include media-query($large-down) {
+      display: none;
+    }
+  }
+}
+
+a.site-nav__child-link--parent {
+  pointer-events: none;
+  .site-nav__label {
+    border: none;
+  }
 }
 
 
@@ -2418,25 +2530,25 @@ hr {
   }
 }
 
-.grid--table {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
+// .grid--table {
+//   display: table;
+//   table-layout: fixed;
+//   width: 100%;
 
-  > .grid__item {
-    float: none;
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
+//   > .grid__item {
+//     float: none;
+//     display: table-cell;
+//     vertical-align: middle;
+//   }
+// }
 
-.grid--no-gutters {
-  margin-left: 0;
+// .grid--no-gutters {
+//   margin-left: 0;
 
-  .grid__item {
-    padding-left: 0;
-  }
-}
+//   .grid__item {
+//     padding-left: 0;
+//   }
+// }
 
 .grid--half-gutters {
   margin-left: -($grid-gutter / 2);
@@ -5919,14 +6031,7 @@ $nav-button-padding: 15px;
 }
 
 .site-header__mobile-nav {
-  z-index: $z-index-mobile-nav;
-  position: relative;
-  background-color: $color-body;
-
-  @include media-query($small) {
-    @include display-flexbox();
-    @include align-items(center);
-  }
+  min-height: 80px;
 }
 
 /*================ Modals ================*/
@@ -7100,10 +7205,36 @@ $toolbar-height-small: 46px;
   height: 475px;
   display: table;
   width: 100%;
+  height: 80vh;
   background: {
     size: cover;
     repeat: no-repeat;
     position: 50% 50%;
+  }
+}
+
+.hero-title {
+  color: #FFF;
+  @include media-query($medium-up) {
+    max-width: 550px;
+    font-size: 65px;
+    line-height: 71px;
+  }
+  @include media-query($small) {
+    font-size: 31px;
+    line-height: 39px;
+  }
+}
+
+.hero-text {
+  @include media-query($medium-up) {
+    max-width: 475px;
+  }
+  p {
+    color: #FFF;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 30px;
   }
 }
 
@@ -7185,8 +7316,12 @@ $toolbar-height-small: 46px;
   top: 50%;
   left: 0;
   right: 0;
-  z-index: 2;
   @include transform(translateY(-50%));
+  width: 85%;
+  margin: 0 auto;
+  @include media-query($medium-up) {
+
+  }
 }
 
 .hero-fixed-width__image {
@@ -7804,4 +7939,91 @@ $linklist-spacing-small: 12px;
 }
 .rich-text__text--small {
   font-size: em(floor($font-size-base * 0.88));
+}
+
+// Menu Icon
+
+.menu-icon {
+  display: inline-block;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+  @include media-query($xlarge-up) {
+    display: none !important;
+  }
+}
+
+.menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.menu-icon .navicon:before,
+.menu-icon .navicon:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.menu-icon .navicon:before {
+  top: 5px;
+}
+
+.menu-icon .navicon:after {
+  top: -5px;
+}
+
+// Menu Btn 
+
+.menu-btn {
+  display: none;
+}
+
+.menu-btn:checked ~ .site-nav {
+  @include media-query($large-down) {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100vh;
+    z-index: 1;
+  }
+}
+
+.menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+// Menu Image
+
+.menu-image {
+  align-self: center;
+  width: 244px;
+  @include media-query($large-down) {
+    display: none !important;
+  }
 }

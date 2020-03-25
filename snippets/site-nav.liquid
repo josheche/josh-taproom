@@ -7,6 +7,8 @@
     Usage:
     {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
 {% endcomment %}
+<input class="menu-btn" type="checkbox" id="menu-btn" />
+<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
 <ul class="site-nav list--inline{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}" id="SiteNav">
   {% for link in linklists[linklist].links %}
     {%- assign child_list_handle = link.title | handleize -%}
@@ -39,12 +41,13 @@
                         {% if childlink.current %} aria-current="page"{% endif %}
                       >
                         <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                        <span class="site-nav__label-border"></span>
                       </a>
 
                       {% if childlink.links != blank %}
-                        <ul>
+                        <ul class="site-nav__grandchildlist-grid">
                         {% for grandchildlink in childlink.links %}
-                          <li>
+                          <li class="site-nav__grandchildlist-item">
                             <a href="{{ grandchildlink.url }}"
                             class="site-nav__link site-nav__child-link"
                             {% if grandchildlink.current %} aria-current="page"{% endif %}
@@ -59,6 +62,9 @@
                     </li>
                   {% endfor %}
                 {% endif %}
+                  <li class="site-nav__childlist-item menu-image">
+                    <img class="site-nav__childlist-image" src="{{ section.settings.featuredImage | img_url: 'large' }}">
+                  </li>
               </ul>
             </div>
 
@@ -69,7 +75,7 @@
                   <a href="{{ childlink.url }}"
                   class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
                   {% if childlink.current %} aria-current="page"{% endif %}
-                >
+                  >
                     <span class="site-nav__label">{{ childlink.title | escape }}</span>
                   </a>
                 </li>
@@ -89,4 +95,18 @@
       </li>
     {% endif %}
   {% endfor %}
+
 </ul>
+
+{% schema %}
+  {
+    "name": "Mega Menu",
+    "settings": [
+      {
+        "id": "featuredImage",
+        "type": "image_picker",
+        "label": "Featured Image"
+      }
+	  ]
+  }
+{% endschema %}
