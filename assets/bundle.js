@@ -8116,7 +8116,30 @@ define(String.prototype, "padRight", "".padEnd);
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
 },{"core-js/shim":"../node_modules/core-js/shim.js","regenerator-runtime/runtime":"../node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js","core-js/fn/regexp/escape":"../node_modules/core-js/fn/regexp/escape.js"}],"layouts/theme.js":[function(require,module,exports) {
+// Custom carousel
+$('.carousel_body').slick({
+  arrows: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  dots: false,
+  centerMode: true,
+  responsive: [{
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }]
+}); // Custom carousel nav
 
+$('.carousel-prev').click(function () {
+  $(this).parent().find('.carousel_body').slick('slickPrev');
+});
+$('.carousel-next').click(function (e) {
+  e.preventDefault();
+  $(this).parent().find('.carousel_body').slick('slickNext');
+});
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -8151,7 +8174,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50015" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64209" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

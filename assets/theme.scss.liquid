@@ -579,281 +579,6 @@ $z-index-giftcard-code: 5;
 $color-video-bg: {{ background_color_poster }};
 
 
-/*================ VENDOR ================*/
-/*============================================================================
-  Slick Slider 1.6.0
-
-  - If upgrading Slick's styles, use the following variables/functions
-    instead of the slick defaults (from slick-theme.scss)
-  - This file includes default slick.scss styles (at Slick Slider SCSS)
-    and slick-theme.scss (at Slick Slider Theme). Upgrade each area individually.
-  - Remove `outline: none` from `.slick-dots li button`
-==============================================================================*/
-$slick-font-family: "slick-icons, sans-serif";
-$slick-arrow-color: $color-slideshow-arrows;
-$slick-dot-color: $color-slideshow-dots;
-$slick-dot-color-active: $slick-dot-color !default;
-$slick-prev-character: '\2190';
-$slick-next-character: '\2192';
-$slick-dot-character: '\2022';
-$slick-dot-size: 6px;
-$slick-opacity-default: 0.75;
-$slick-opacity-on-hover: 1;
-$slick-opacity-not-active: 0.25;
-
-// Only called once so make sure proper file is grabbed
-@function slick-image-url($url) {
-  @return url({{ "ajax-loader.gif" | asset_url }});
-}
-
-// Unused intentionally
-@function slick-font-url($url) {}
-
-/*================ Slick Slider SCSS ================*/
-.slick-slider {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-.slick-list {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 0;
-  padding: 0;
-
-  &:focus {
-    outline: none;
-  }
-
-  &.dragging {
-    cursor: pointer;
-    cursor: hand;
-  }
-}
-.slick-slider .slick-track,
-.slick-slider .slick-list {
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-.slick-track {
-  position: relative;
-  left: 0;
-  top: 0;
-  display: block;
-
-  &:before,
-  &:after {
-    content: "";
-    display: table;
-  }
-
-  &:after {
-    clear: both;
-  }
-
-  .slick-loading & {
-    visibility: hidden;
-  }
-}
-.slick-slide {
-  float: left;
-  height: 100%;
-  min-height: 1px;
-  [dir="rtl"] & {
-    float: right;
-  }
-  img {
-    display: block;
-  }
-  &.slick-loading img {
-    display: none;
-  }
-
-  display: none;
-
-  &.dragging img {
-    pointer-events: none;
-  }
-
-  .slick-initialized & {
-    display: block;
-  }
-
-  .slick-loading & {
-    visibility: hidden;
-  }
-
-  .slick-vertical & {
-    display: block;
-    height: auto;
-    border: 1px solid transparent;
-  }
-}
-.slick-arrow.slick-hidden {
-  display: none;
-}
-
-/*================ Slick Slider Theme ================*/
-.slick-list {
-  .slick-loading & {
-    background: #fff slick-image-url("ajax-loader.gif") center center no-repeat;
-  }
-}
-
-/* Icons */
-@if $slick-font-family == "slick" {
-  @font-face {
-    font-family: "slick";
-    src: slick-font-url("slick.eot");
-    src: slick-font-url("slick.eot?#iefix") format("embedded-opentype"), slick-font-url("slick.woff") format("woff"), slick-font-url("slick.ttf") format("truetype"), slick-font-url("slick.svg#slick") format("svg");
-    font-weight: normal;
-    font-style: normal;
-  }
-}
-
-/* Arrows */
-
-.slick-prev,
-.slick-next {
-  position: absolute;
-  display: block;
-  height: 20px;
-  width: 20px;
-  line-height: 0px;
-  font-size: 0px;
-  cursor: pointer;
-  background: transparent;
-  color: transparent;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  padding: 0;
-  border: none;
-  &:hover, &:focus {
-    background: transparent;
-    color: transparent;
-    &:before {
-      opacity: $slick-opacity-on-hover;
-    }
-  }
-  &.slick-disabled:before {
-    opacity: $slick-opacity-not-active;
-  }
-  &:before {
-    font-family: $slick-font-family;
-    font-size: 20px;
-    line-height: 1;
-    color: $slick-arrow-color;
-    opacity: $slick-opacity-default;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-.slick-prev {
-  left: -25px;
-  [dir="rtl"] & {
-    left: auto;
-    right: -25px;
-  }
-  &:before {
-    content: $slick-prev-character;
-    [dir="rtl"] & {
-      content: $slick-next-character;
-    }
-  }
-}
-
-.slick-next {
-  right: -25px;
-  [dir="rtl"] & {
-    left: -25px;
-    right: auto;
-  }
-  &:before {
-    content: $slick-next-character;
-    [dir="rtl"] & {
-      content: $slick-prev-character;
-    }
-  }
-}
-
-/* Dots */
-
-.slick-dotted.slick-slider {
-  margin-bottom: 30px;
-}
-
-.slick-dots {
-  list-style: none;
-  display: block;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  li {
-    position: relative;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    margin: 0 5px;
-    padding: 0;
-    cursor: pointer;
-    button, a {
-      border: 0;
-      background: transparent;
-      display: block;
-      height: 20px;
-      width: 20px;
-      line-height: 0px;
-      font-size: 0px;
-      color: transparent;
-      padding: 5px;
-      cursor: pointer;
-      &:hover, &:focus {
-        &:before {
-          opacity: $slick-opacity-on-hover;
-        }
-      }
-      &:before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: $slick-dot-character;
-        width: 20px;
-        height: 20px;
-        font-family: $slick-font-family;
-        font-size: $slick-dot-size;
-        line-height: 20px;
-        text-align: center;
-        color: $slick-dot-color;
-        opacity: $slick-opacity-not-active;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    }
-    &.slick-active button:before {
-      color: $slick-dot-color-active;
-      opacity: $slick-opacity-default;
-    }
-  }
-}
-
-
 /*================ GLOBAL ================*/
 /*============================================================================
   #Normalize
@@ -2827,83 +2552,6 @@ hr {
     flex-basis: 100%;
     justify-content: flex-end;
     margin-right: 0;
-  }
-}
-
-
-/*============================================================================
-  Slick slider overrides
-==============================================================================*/
-$slick-dot-size: 12px;
-$slick-dot-size-small: 10px;
-
-.slick-dotted.slick-slider {
-  margin-bottom: 0;
-}
-
-/*================ Slick dots and prev/next pagination ================*/
-.slideshow__arrows .slick-dots {
-  margin: 0 0.75rem;
-
-  li {
-    // sass-lint:disable SelectorDepth
-    margin: 0;
-    vertical-align: middle;
-    width: $slick-dot-size-small;
-    height: $slick-dot-size-small;
-    margin-left: 6px;
-
-    &:first-of-type {
-      margin-left: 0;
-    }
-
-    @include media-query($medium-up) {
-      width: $slick-dot-size;
-      height: $slick-dot-size;
-      margin-left: 8px;
-    }
-
-    button, a {
-      position: relative;
-      padding: 0;
-      width: $slick-dot-size-small;
-      height: $slick-dot-size-small;
-
-      @include media-query($medium-up) {
-        width: $slick-dot-size;
-        height: $slick-dot-size;
-      }
-    }
-
-    button::before,
-    a::before {
-      text-indent: -9999px;
-      background-color: transparent;
-      border-radius: 100%;
-      background-color: currentColor;
-      width: $slick-dot-size-small;
-      height: $slick-dot-size-small;
-      opacity: 0.4;
-      transition: all 0.2s;
-
-      @include media-query($medium-up) {
-        width: $slick-dot-size;
-        height: $slick-dot-size;
-      }
-    }
-
-    &.slick-active button::before,
-    &.slick-active a::before,
-    &.slick-active-mobile button::before,
-    &.slick-active-mobile a::before {
-      opacity: 1;
-    }
-
-    button:active::before,
-    & .slick-active a::before,
-    & .slick-active-mobile a::before {
-      opacity: 0.7;
-    }
   }
 }
 
@@ -6034,541 +5682,55 @@ $nav-button-padding: 15px;
   min-height: 80px;
 }
 
-/*================ Modals ================*/
-.modal {
-  @include transform(translateY(-20px));
-  background-color: $color-bg;
-  bottom: 0;
-  color: $color-text;
-  display: none;
-  left: 0;
-  opacity: 0;
-  overflow: hidden;
-  position: fixed;
-  right: 0;
-  top: 0;
-}
-
-.modal--is-active {
-  @include transform(translateY(0));
-  display: block;
-  opacity: 1;
-  overflow: hidden;
-}
-
-.modal__inner {
-  @include prefix(transform-style, preserve-3d, moz webkit spec);
-  height: 100%;
-}
-
-.modal__centered {
-  @include transform(translateY(-50%));
-  position: relative;
-  top: 50%;
-
-  .no-csstransforms & {
-    top: 20%;
-  }
-}
-
-.modal__close {
-  border: 0;
-  padding: $gutter-site;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 2;
-
-  .icon {
-    font-size: em(20);
-  }
-}
-
-/*============================================================================
-  Hero slider
-
-  Extends default slick slider styles.
-  Extra specificity in selectors is used to override defaults.
-==============================================================================*/
-$slideshow-height-small: 475px;
-$slideshow-height-medium: 650px;
-$slideshow-height-large: 775px;
-$slideshow-control-size: 44px;
-$slideshow-dot-size: 9px;
-$slideshow-loader: #fff;
-$z-index-slideshow-image: 1;
-$z-index-slideshow-text: 2;
-$z-index-slideshow-controls: 3;
-$color-slideshow-controls: #fff;
-$color-slideshow-controls-background: #000;
-$color-slideshow-close-bg: #fff;
-$color-slideshow-close-text: #000;
-
-$ease-transition: cubic-bezier(0.44, 0.13, 0.48, 0.87);
-$transition-text-slideshow: 0.6s $ease-transition;
-$transition-image-slideshow: opacity 0.8s $ease-transition;
-$transition-controls-slideshow: color 0.2s $ease-transition,
-  background-color 0.2s $ease-transition;
-
-.slideshow-wrapper {
-  position: relative;
-}
-
-.slideshow {
-  position: unset;
-  overflow: hidden;
-  margin-bottom: 0;
-  max-height: 80vh;
-  transition: height 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
-
-  @include media-query($medium-up) {
-    position: relative;
-    max-height: 100vh;
-  }
-
-  // Make sure slides fill full height
-  .slideshow__slide,
-  .slick-list,
-  .slick-track {
-    height: 100%;
-  }
-
-  .slick-prev,
-  .slick-next {
-    top: 0;
-    height: 100%;
-    margin-top: 0;
-    width: 40px;
-  }
-
-  .slick-prev {
-    left: 0;
-  }
-
-  .slick-next {
-    right: 0;
-  }
-}
-
-.slideshow--display-controls .slick-dots {
-  @include media-query($medium-up) {
-    left: calc(50% - 22px);
-  }
-}
-
-.slideshow--small {
-  height: $slideshow-height-small - 300;
-
-  @include media-query($medium-up) {
-    height: $slideshow-height-small;
-  }
-}
-
-.slideshow--medium {
-  height: $slideshow-height-medium - 380;
-
-  @include media-query($medium-up) {
-    height: $slideshow-height-medium;
-  }
-}
-
-.slideshow--large {
-  height: $slideshow-height-large - 400;
-
-  @include media-query($medium-up) {
-    height: $slideshow-height-large;
-  }
-}
-
-/*================ General slide styles ================*/
-.slideshow__slide {
-  position: relative;
-  overflow: hidden;
-}
-
-.slideshow__link {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  &:active,
-  &:focus {
-    opacity: 1;
-  }
-}
-
-.slideshow__overlay {
-  @include media-query($medium-up) {
-    @include overlay($z-index-slideshow-text);
-  }
-}
-
-/*================ Slide images ================*/
-.slideshow__image {
-  transition: $transition-image-slideshow;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-color: transparent;
-  z-index: $z-index-slideshow-image;
-
-  .slick-initialized &,
-  .no-js & {
-    opacity: 1;
-  }
-}
-
-/*================ Slide text ================*/
-.slideshow__text-wrap {
-  height: 100%;
-  position: relative;
-
-  .slideshow__link & {
-    cursor: inherit;
-  }
-}
-
-.slideshow__text-wrap--mobile {
-  display: none;
-
-  @include media-query($small) {
-    display: block;
-    position: relative;
-    top: -1.1rem;
-    background-color: $color-bg;
-    width: 85%;
-    margin: 0 0 -1.1rem 7.5%;
-  }
-}
-
-.slideshow__text-content {
-  @include media-query($medium-up) {
-    transition: $transition-text-slideshow;
-    transition-delay: 0.3s;
-  }
-
-  .slideshow__text-wrap--desktop & {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    opacity: 0;
-    z-index: $z-index-slideshow-text;
-  }
-
-  @include media-query($medium-up) {
-    &.slideshow__text-content--vertical-top {
-      top: 120px;
-    }
-    &.slideshow__text-content--vertical-bottom {
-      top: auto;
-      bottom: 40px;
-    }
-  }
-
-  .slick-initialized .slick-active &,
-  .no-js & {
-    @include transform(translateY(-40px));
-    opacity: 1;
-  }
-
-  .slick-initialized .slick-active &.slideshow__text-content--vertical-center,
-  .no-js &.slideshow__text-content--vertical-center {
-    @include transform(translateY(-50%));
-  }
-
-  &::after {
-    content: '';
-    @include spinner(40px, $slideshow-loader);
-    @include animation(spin 0.65s infinite linear);
-    opacity: 1;
-    transition: all 1s cubic-bezier(0.29, 0.63, 0.44, 1);
-    bottom: -$gutter-site;
-    left: 50%;
-
-    @include media-query($small) {
-      content: none;
-    }
-  }
-
-  .slick-initialized &,
-  .no-js & {
-    &::after {
-      opacity: 0;
-      visibility: hidden;
-      content: none;
-    }
-  }
-}
-
-.slideshow__text-content--mobile {
-  display: none;
-  padding-top: 2.6rem;
-
-  .slideshow__arrows--mobile ~ & {
-    padding-top: 1.7rem;
-    @include media-query($medium-up) {
-      padding-top: 0;
-    }
-  }
-
-  @include media-query($medium-up) {
-    padding-top: 0;
-
-    &::after {
-      display: none;
-    }
-  }
-}
-
-.slideshow__title,
-.slideshow__subtitle {
-  color: $color-overlay-title-text;
-
-  @include media-query($small) {
-    display: none;
-  }
-}
-
-.slideshow__title--mobile {
-  margin-bottom: 0;
-
-  & ~ .slideshow__subtitle--mobile {
-    margin-top: 0.5rem;
-  }
-}
-
-.slideshow__subtitle--mobile,
-.slideshow__title--mobile {
-  display: none;
-  color: $color-text;
-
-  @include media-query($small) {
-    display: block;
-  }
-}
-
-.slideshow__btn-wrapper {
-  border: none;
-  background-color: transparent;
-}
-
-.slideshow__btn-wrapper--push {
-  @include media-query($medium-up) {
-    margin-top: $grid-gutter;
-  }
-}
-
-.slideshow__btn {
-  max-width: 100%;
-  display: inline-block;
-  word-wrap: break-word;
-  background-color: $color-btn-primary;
-  color: $color-btn-primary-text;
-  min-height: 3.125rem;
-  line-height: 2.2;
-
-  @include media-query($small) {
-    display: none;
-  }
-}
-
-.slideshow__btn--mobile {
-  display: none;
-  margin: 1.3rem auto 0;
-
-  @include media-query($small) {
-    display: inline-block;
-    margin: 2rem auto 0.3rem;
-  }
-}
-
-/*================ Slideshow control styles ================*/
-
-.slideshow__controls {
-  display: none;
-  justify-content: center;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  margin-bottom: 5px;
-
-  @include media-query($medium-up) {
-    top: auto;
-    bottom: 0;
-    left: 0;
-  }
-
-  .slick-initialized + & {
-    display: flex;
-  }
-}
-
-.slideshow__arrows {
-  height: $slideshow-control-size;
-  padding: 5px;
-  background-clip: content-box;
-  background-color: rgba($color-slideshow-controls-background, 0.4);
-  color: rgba($color-slideshow-controls, 0.5);
-  transition: $transition-controls-slideshow;
-  display: none;
-
-  @include media-query($medium-up) {
-    display: flex;
-  }
-
-  .slideshow__controls:hover &,
-  .slideshow__controls:focus &,
-  .slideshow__controls--hover & {
-    @include media-query($medium-up) {
-      background-color: rgba($color-slideshow-controls-background, 0.75);
-    }
-  }
-
-  .slideshow__arrow {
-    height: $slideshow-control-size;
-    width: $slideshow-control-size;
-    position: relative;
-    top: -5px;
-    padding: 0 0.9rem;
-    line-height: 0;
-    cursor: pointer;
-    transition: $transition-controls-slideshow;
-    background-color: transparent;
-    color: rgba($color-slideshow-controls, 0.5);
-    border: none;
-
-    .icon {
-      width: 0.7rem;
-      height: 0.7rem;
-      transition: $transition-controls-slideshow;
-
-      &:hover {
-        color: $color-slideshow-controls;
-      }
-    }
-  }
-  .slideshow__arrow-left {
-    float: left;
-    @include media-query($medium-up) {
-      order: -1;
-    }
-  }
-  .slideshow__arrow-right {
-    float: right;
-    @include media-query($medium-up) {
-      order: 1;
-    }
-  }
-
-  .slick-dots {
-    line-height: $slideshow-control-size - 12;
-
-    li {
-      width: $slideshow-dot-size;
-      height: $slideshow-dot-size;
-      margin-left: $slideshow-dot-size;
-    }
-    // sass-lint:disable SelectorDepth
-    li button::before,
-    li a::before {
-      width: $slideshow-dot-size;
-      height: $slideshow-dot-size;
-      color: rgba($color-text, 0.7);
-      border: none;
-      opacity: 1;
-
-      @include media-query($medium-up) {
-        color: rgba($color-slideshow-controls, 0.5);
-      }
-    }
-    li.slick-active-mobile button::before,
-    li.slick-active-mobile a::before {
-      color: $color-text;
-    }
-    li.slick-active button::before,
-    li.slick-active a::before {
-      color: $color-slideshow-controls;
-    }
-  }
-}
-
-.slideshow__arrows--mobile {
-  display: block;
-  width: 100%;
-  height: $slideshow-control-size;
-  background-color: transparent;
-  .icon {
-    fill: rgba($color-text, 0.7);
-  }
-  .slideshow__arrow:focus .icon {
-    fill: $color-text;
-  }
-
-  @include media-query($medium-up) {
-    display: none;
-  }
-}
-
-.slideshow__pause {
-  clip: auto;
-  width: $slideshow-control-size;
-  height: $slideshow-control-size;
-  margin-left: 1px;
-  padding: 5px;
-  background-clip: content-box;
-  z-index: $z-index-skip-to-content;
-  border: none;
-  background-color: rgba($color-slideshow-controls-background, 0.4);
-  transition: $transition-controls-slideshow;
-  line-height: 0;
-
-  .slideshow__controls:hover &,
-  .slideshow__controls:focus &,
-  .slideshow__controls--hover & {
-    @include media-query($medium-up) {
-      background-color: rgba($color-slideshow-controls-background, 0.75);
-    }
-  }
-
-  .icon {
-    color: rgba($color-slideshow-controls, 0.5);
-    transition: $transition-controls-slideshow;
-
-    &:hover {
-      color: $color-slideshow-controls;
-    }
-  }
-
-  .icon {
-    width: 0.65rem;
-    height: 0.65rem;
-  }
-}
-
-.slideshow__pause-stop {
-  display: block;
-
-  .is-paused & {
-    display: none;
-  }
-}
-
-.slideshow__pause-rotate {
-  display: none;
-
-  .is-paused & {
-    display: block;
-  }
-}
+// /*================ Modals ================*/
+// .modal {
+//   @include transform(translateY(-20px));
+//   background-color: $color-bg;
+//   bottom: 0;
+//   color: $color-text;
+//   display: none;
+//   left: 0;
+//   opacity: 0;
+//   overflow: hidden;
+//   position: fixed;
+//   right: 0;
+//   top: 0;
+// }
+
+// .modal--is-active {
+//   @include transform(translateY(0));
+//   display: block;
+//   opacity: 1;
+//   overflow: hidden;
+// }
+
+// .modal__inner {
+//   @include prefix(transform-style, preserve-3d, moz webkit spec);
+//   height: 100%;
+// }
+
+// .modal__centered {
+//   @include transform(translateY(-50%));
+//   position: relative;
+//   top: 50%;
+
+//   .no-csstransforms & {
+//     top: 20%;
+//   }
+// }
+
+// .modal__close {
+//   border: 0;
+//   padding: $gutter-site;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   z-index: 2;
+
+//   .icon {
+//     font-size: em(20);
+//   }
+// }
 
 .price {
   display: flex;
@@ -7317,7 +6479,7 @@ $toolbar-height-small: 46px;
   left: 0;
   right: 0;
   @include transform(translateY(-50%));
-  width: 85%;
+  width: 65%;
   margin: 0 auto;
   @include media-query($medium-up) {
 
@@ -7363,38 +6525,38 @@ $toolbar-height-small: 46px;
   }
 }
 
-// Slick overrides
-.slick-dotted.quotes-slider.slick-initialized {
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
+// // Slick overrides
+// .slick-dotted.quotes-slider.slick-initialized {
+//   cursor: grab;
+//   cursor: -moz-grab;
+//   cursor: -webkit-grab;
+// }
 
-// Slick dot positioning and color
-.quotes-wrapper .slick-dots {
-  position: relative;
-  bottom: 0;
-  margin-top: $section-spacing;
+// // Slick dot positioning and color
+// .quotes-wrapper .slick-dots {
+//   position: relative;
+//   bottom: 0;
+//   margin-top: $section-spacing;
 
-  li {
-    margin: 0;
-  }
-  // sass-lint:disable SelectorDepth
-  li button::before {
-    font-size: 34px;
-    color: $color-text;
-    opacity: 0.2;
-  }
+//   li {
+//     margin: 0;
+//   }
+//   // sass-lint:disable SelectorDepth
+//   li button::before {
+//     font-size: 34px;
+//     color: $color-text;
+//     opacity: 0.2;
+//   }
 
-  li.slick-active button::before {
-    opacity: 1;
-  }
-}
+//   li.slick-active button::before {
+//     opacity: 1;
+//   }
+// }
 
-// Slick selected outline overrides
-.quotes-wrapper .slick-slide[tabindex="0"] {
-  outline: none;
-}
+// // Slick selected outline overrides
+// .quotes-wrapper .slick-slide[tabindex="0"] {
+//   outline: none;
+// }
 
 .logo-bar {
   list-style: none;
@@ -8026,4 +7188,56 @@ $linklist-spacing-small: 12px;
   @include media-query($large-down) {
     display: none !important;
   }
+}
+
+// Carousel
+
+.carousel {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  .carousel_container {
+    position: relative;
+    text-align: center;
+    padding: 55px 0 100px ;
+  }
+  .carousel_header {
+    padding: 45px 0;
+  }
+  .carousel_body {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.slick-slide{
+  margin: 0 30px;
+}
+.slick-slide img{
+  // width: 244px;
+  margin: 0 auto;
+}
+
+.carousel-arrow {
+  position: absolute;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  z-index: 2;
+  top: 50%;
+  >svg {
+    @include media-query($medium-down) {
+      width: 50px;
+    }
+  }
+}
+
+.carousel-prev {
+  left: 0;
+}
+
+.carousel-next {
+  right: 0;
 }

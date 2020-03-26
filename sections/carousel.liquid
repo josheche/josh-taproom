@@ -1,0 +1,41 @@
+<section class="carousel">
+  <div class="carousel_container">
+    <div class="carousel_header">
+      <div class="carousel_title">
+        <h3>{{ section.settings.carouselTitle }}</h3>
+      </div>
+    </div>
+    <div class="carousel_body">
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+      <div><img src="https://picsum.photos/400/400/"></div>
+    </div>
+    <button type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Previous slide" role="button" aria-disabled="true">{% include 'icon-chevron-left' %}</button>
+    <button type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next slide" role="button">{% include 'icon-chevron-right' %}</button>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Carousel",
+  "settings": [
+    {
+      "id": "carouselTitle",
+      "type": "text",
+      "label": "Heading",
+      "default": "Featured Products"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

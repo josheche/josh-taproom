@@ -36,10 +36,10 @@
   <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
 
-  <!-- Add the slick.css if you want default styling -->
+  <!-- Add the slick.css first -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <!-- Add the slick-theme.css if you want default styling -->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  {% comment %} <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/> {% endcomment %}
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
 
