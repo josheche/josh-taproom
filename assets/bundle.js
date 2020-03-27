@@ -8118,47 +8118,42 @@ define(String.prototype, "padRight", "".padEnd);
 },{"core-js/shim":"../node_modules/core-js/shim.js","regenerator-runtime/runtime":"../node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js","core-js/fn/regexp/escape":"../node_modules/core-js/fn/regexp/escape.js"}],"layouts/theme.js":[function(require,module,exports) {
 
 },{}],"scripts.js":[function(require,module,exports) {
-// // Custom carousel
-// $('.carousel_body').slick({
-//     arrows: false,
-//     slidesToShow: 4,
-//     slidesToScroll: 1,
-//     dots: false,
-//     responsive: [
-//         {
-//             breakpoint: 990,
-//             settings: {
-//                 slidesToShow: 3,
-//                 slidesToScroll: 1,
-//                 centerMode: true
-//             }
-//         },
-//         {
-//             breakpoint: 750,
-//             settings: {
-//                 slidesToShow: 2,
-//                 slidesToScroll: 1,
-//                 centerMode: true
-//             }
-//         },
-//         {
-//             breakpoint: 420,
-//             settings: {
-//                 slidesToShow: 1,
-//                 slidesToScroll: 1,
-//                 centerMode: true
-//             }
-//         }
-//     ]
-// });
-// // Custom carousel nav
-// $('.carousel-prev').click(function(){ 
-//     $(this).parent().find('.carousel_body').slick('slickPrev');
-// } );
-// $('.carousel-next').click(function(e){
-//     e.preventDefault(); 
-//     $(this).parent().find('.carousel_body').slick('slickNext');
-// } );
+$('.carousel_body').slick({
+  arrows: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  dots: false,
+  infinite: true,
+  responsive: [{
+    breakpoint: 990,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }, {
+    breakpoint: 750,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }, {
+    breakpoint: 420,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }]
+});
+$('.carousel-prev').click(function () {
+  $(this).parent().find('.carousel_body').slick('slickPrev');
+});
+$('.carousel-next').click(function (e) {
+  e.preventDefault();
+  $(this).parent().find('.carousel_body').slick('slickNext');
+});
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -8195,7 +8190,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50397" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56879" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
