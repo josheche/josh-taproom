@@ -24,7 +24,7 @@ $('.carousel-body').slick({
             }
         },
         {
-            breakpoint: 420,
+            breakpoint: 560,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -45,4 +45,22 @@ $('.carousel-next').click(function(e){
 
 // Quick View
 
-$(".quick-view").modaal();
+$(".quick-view-1").modaal();
+$(".quick-view-2").modaal();
+$(".quick-view-3").modaal();
+$(".quick-view-4").modaal();
+$(".quick-view-5").modaal();
+$(".quick-view-6").modaal();
+$(".quick-view-7").modaal();
+$(".quick-view-8").modaal();
+
+// Responsive nav menu
+
+$(".menu-btn").click(function() {
+    if ($(".menu-btn").prop("checked")) {
+        document.body.classList.add("stop-scrolling"); 
+    }
+    else {
+        document.body.classList.remove("stop-scrolling"); 
+    }
+});

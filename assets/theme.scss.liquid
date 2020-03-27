@@ -982,6 +982,10 @@ $grid-breakpoints: (
   @include clearfix();
 }
 
+.stop-scrolling { 
+  overflow-y: hidden; 
+}
+
 .display-none {
   display: none;
 }
@@ -1998,6 +2002,8 @@ textarea {
   position: relative;
   display: inline-block;
   vertical-align: middle;
+  width: 24px;
+  height: 24px;
   >svg {
     &:after {
       content: '';
@@ -7104,6 +7110,10 @@ $linklist-spacing-small: 12px;
   }
 }
 
+.menu-btn:checked ~ body {
+  overflow-y: hidden;
+}
+
 .menu-btn:checked ~ .menu-icon .navicon {
   background: transparent;
 }
@@ -7240,6 +7250,28 @@ $linklist-spacing-small: 12px;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.overlay-sale {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  .overlay-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #29333F;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 12px;
+    text-align: center;
+    letter-spacing: 1.16667px;
+    text-transform: uppercase;
+  }
 }
 
 // Quick View

@@ -9,8 +9,8 @@
       <div>
         <div class="carousel-slide" style="background-image: url({{ block.settings.slideImg | img_url: 'original' }})">
           <div class="overlay">
-            <a href="#quick-view" class="btn quick-view">{{ block.settings.linkText }}</a>
-            <div id="quick-view" class="display-none">
+            <a href="#quick-view-{{ forloop.index }}" class="btn quick-view-{{ forloop.index }}">{{ block.settings.linkText }}</a>
+            <div id="quick-view-{{ forloop.index }}" class="display-none">
               <div class="quick-view-container">
                 <div class="quick-view-figure" style="background-image: url({{ block.settings.slideImg | img_url: 'original' }})"></div>
                 <div class="quick-view-content">
@@ -35,6 +35,11 @@
               </div>
             </div>
           </div>
+          {% if block.settings.onSale != false %}
+          <div class="overlay-sale">
+            <span class="overlay-circle">Sale</span>
+          </div>
+          {% endif %}
         </div>
         <div class="carousel-slide-info">
           <span>This is a long product name over two lines.</span>
@@ -80,6 +85,13 @@
           "type": "image_picker",
           "id": "slideImg",
           "label": "Add img for slide"
+        },
+        {  
+          "type": "checkbox",
+          "id": "onSale",
+          "label": "On Sale",
+          "default": false,
+          "info": "Indicate whether item is on sale."
         }
       ]
     }

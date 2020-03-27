@@ -8140,7 +8140,7 @@ $('.carousel-body').slick({
       centerMode: true
     }
   }, {
-    breakpoint: 420,
+    breakpoint: 560,
     settings: {
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -8156,7 +8156,22 @@ $('.carousel-next').click(function (e) {
   $(this).parent().find('.carousel-body').slick('slickNext');
 }); // Quick View
 
-$(".quick-view").modaal();
+$(".quick-view-1").modaal();
+$(".quick-view-2").modaal();
+$(".quick-view-3").modaal();
+$(".quick-view-4").modaal();
+$(".quick-view-5").modaal();
+$(".quick-view-6").modaal();
+$(".quick-view-7").modaal();
+$(".quick-view-8").modaal(); // Responsive nav menu
+
+$(".menu-btn").click(function () {
+  if ($(".menu-btn").prop("checked")) {
+    document.body.classList.add("stop-scrolling");
+  } else {
+    document.body.classList.remove("stop-scrolling");
+  }
+});
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -8165,7 +8180,7 @@ require("babel-polyfill");
 require("./layouts/theme");
 
 require("./scripts");
-},{"babel-polyfill":"../node_modules/babel-polyfill/lib/index.js","./layouts/theme":"layouts/theme.js","./scripts":"scripts.js"}],"../../../.nvm/versions/node/v12.16.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"babel-polyfill":"../node_modules/babel-polyfill/lib/index.js","./layouts/theme":"layouts/theme.js","./scripts":"scripts.js"}],"../../../.nvm/versions/node/v13.11.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8193,7 +8208,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62232" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54177" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -8369,5 +8384,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../.nvm/versions/node/v12.16.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../.nvm/versions/node/v13.11.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/bundle.js.map
