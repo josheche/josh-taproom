@@ -1962,6 +1962,50 @@ textarea {
   }
 }
 
+.login-nav {
+  text-align: right;
+  @include media-query($large-down) {
+    width: 24px;
+    height: 24px;
+  }
+  @include media-query($medium-down) {
+    margin-right: 20px;
+  }
+}
+
+.login-btn {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 12px;
+  letter-spacing: 1.16667px;
+  text-transform: uppercase;
+  @include media-query($large-down) {
+    display: none;
+  }
+  &::after {
+    content: '';
+    border-right: 1px solid #E6E9ED;
+    padding-left: 12px;
+    margin-right: 10px;
+  }
+}
+
+.cart-btn {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  >svg {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
 .site-nav {
   position: relative;
   padding: 0;
