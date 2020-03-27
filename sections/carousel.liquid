@@ -8,7 +8,6 @@
       {% for block in section.blocks %}
       <div>
         <div class="carousel-slide" style="background-image: url({{ block.settings.slideImg | img_url: 'original' }})">
-          {% comment %} <img src="{{ block.settings.slideImg | img_url: 'original' }}"> {% endcomment %}
           <div class="overlay">
             <a href="#quick-view" class="btn quick-view">{{ block.settings.linkText }}</a>
             <div id="quick-view" class="display-none">
