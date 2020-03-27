@@ -5,16 +5,20 @@
         <h3>{{ section.settings.carouselTitle }}</h3>
       </div>
     </div>
+    {% if section.blocks.size > 0 %}
     <div class="carousel_body">
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
-      <div><img src="https://picsum.photos/244/244/"></div>
+      {% for block in section.blocks %}
+      <div>
+        <div class="carousel-slide">
+          <img src="{{ block.settings.slideImg | img_url: 'original' }}">
+          <div class="overlay">
+            <a href="{{ block.settings.slideLink }}" class="btn text">{{ block.settings.linkText }}</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
+    {% endif %}
   </div>
   <button type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Previous slide" role="button" aria-disabled="true">{% include 'icon-chevron-left' %}</button>
   <button type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next slide" role="button">{% include 'icon-chevron-right' %}</button>
@@ -23,12 +27,36 @@
 {% schema %}
 {
   "name": "Carousel",
+  "max_blocks": 8,
   "settings": [
     {
       "id": "carouselTitle",
       "type": "text",
       "label": "Heading",
       "default": "Featured Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "url",
+          "id": "slideLink",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "linkText",
+          "label": "Link text"
+        },
+        {
+          "type": "image_picker",
+          "id": "slideImg",
+          "label": "Add img for slide"
+        }
+      ]
     }
   ]
 }
@@ -38,4 +66,46 @@
 {% endstylesheet %}
 
 {% javascript %}
+$('.carousel_body').slick({
+    arrows: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    dots: false,
+    infinite: true,
+    responsive: [
+        {
+            breakpoint: 990,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                centerMode: true
+            }
+        },
+        {
+            breakpoint: 750,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                centerMode: true
+            }
+        },
+        {
+            breakpoint: 420,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: true
+            }
+        }
+    ]
+});
+
+$('.carousel-prev').click(function(){ 
+    $(this).parent().find('.carousel_body').slick('slickPrev');
+} );
+
+$('.carousel-next').click(function(e){
+    e.preventDefault(); 
+    $(this).parent().find('.carousel_body').slick('slickNext');
+} );
 {% endjavascript %}
