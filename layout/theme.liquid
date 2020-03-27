@@ -40,6 +40,9 @@
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <!-- Add the slick-theme.css if you want default styling -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  
+  <!-- Add the modaal.css if you want default styling for modals -->
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css"/>
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
 
@@ -131,6 +134,9 @@
 
   {% comment %} include slick carousel library from cdn {% endcomment %}
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+  
+  {% comment %} include modaal.js modal library from cdn {% endcomment %}
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
 </body>
 
 </html>

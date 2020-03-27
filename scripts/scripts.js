@@ -1,4 +1,6 @@
-$('.carousel_body').slick({
+// Carousel
+
+$('.carousel-body').slick({
     arrows: false,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -33,10 +35,14 @@ $('.carousel_body').slick({
 });
 
 $('.carousel-prev').click(function(){ 
-    $(this).parent().find('.carousel_body').slick('slickPrev');
+    $(this).parent().find('.carousel-body').slick('slickPrev');
 } );
 
 $('.carousel-next').click(function(e){
     e.preventDefault(); 
-    $(this).parent().find('.carousel_body').slick('slickNext');
+    $(this).parent().find('.carousel-body').slick('slickNext');
 } );
+
+// Quick View
+
+$(".quick-view").modaal();

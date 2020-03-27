@@ -8118,7 +8118,8 @@ define(String.prototype, "padRight", "".padEnd);
 },{"core-js/shim":"../node_modules/core-js/shim.js","regenerator-runtime/runtime":"../node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js","core-js/fn/regexp/escape":"../node_modules/core-js/fn/regexp/escape.js"}],"layouts/theme.js":[function(require,module,exports) {
 
 },{}],"scripts.js":[function(require,module,exports) {
-$('.carousel_body').slick({
+// Carousel
+$('.carousel-body').slick({
   arrows: false,
   slidesToShow: 4,
   slidesToScroll: 1,
@@ -8148,12 +8149,14 @@ $('.carousel_body').slick({
   }]
 });
 $('.carousel-prev').click(function () {
-  $(this).parent().find('.carousel_body').slick('slickPrev');
+  $(this).parent().find('.carousel-body').slick('slickPrev');
 });
 $('.carousel-next').click(function (e) {
   e.preventDefault();
-  $(this).parent().find('.carousel_body').slick('slickNext');
-});
+  $(this).parent().find('.carousel-body').slick('slickNext');
+}); // Quick View
+
+$(".quick-view").modaal();
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -8190,7 +8193,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56879" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62232" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
