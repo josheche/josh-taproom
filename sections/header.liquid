@@ -45,7 +45,12 @@
       <nav class="grid__item medium-up--one-half site-nav-wrapper" id="AccessibleNav" role="navigation">
         {% include 'site-nav', linklist: section.settings.main_linklist %}
       </nav>
+      <div class="grid__item medium-up--one-quarter login-nav">
+        <a href="#" class="login-btn">Log In</a>
+        <a href="#" class="cart-btn">{% include 'icon-cart' %}</a>
+      </div>
       {% endif %}
+
     </div>
   </header>
 
