@@ -39,7 +39,7 @@
   <!-- Add the slick.css first -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <!-- Add the slick-theme.css if you want default styling -->
-  {% comment %} <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/> {% endcomment %}
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
 
@@ -106,7 +106,6 @@
   {%- endif -%}
 
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
-  <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
 
   {{ content_for_header }}
@@ -124,9 +123,13 @@
   </div>
 
   {% comment %} include jquery as slick carousel dependaecy {% endcomment %}
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <script
+  src="//code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
   {% comment %} include slick carousel library from cdn {% endcomment %}
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
 </body>
 
 </html>
