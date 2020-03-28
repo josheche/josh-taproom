@@ -1,4 +1,6 @@
-$('.carousel_body').slick({
+// Carousel
+
+$('.carousel-body').slick({
     arrows: false,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -22,7 +24,7 @@ $('.carousel_body').slick({
             }
         },
         {
-            breakpoint: 420,
+            breakpoint: 560,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -33,10 +35,32 @@ $('.carousel_body').slick({
 });
 
 $('.carousel-prev').click(function(){ 
-    $(this).parent().find('.carousel_body').slick('slickPrev');
+    $(this).parent().find('.carousel-body').slick('slickPrev');
 } );
 
 $('.carousel-next').click(function(e){
     e.preventDefault(); 
-    $(this).parent().find('.carousel_body').slick('slickNext');
+    $(this).parent().find('.carousel-body').slick('slickNext');
 } );
+
+// Quick View
+
+$(".quick-view-1").modaal();
+$(".quick-view-2").modaal();
+$(".quick-view-3").modaal();
+$(".quick-view-4").modaal();
+$(".quick-view-5").modaal();
+$(".quick-view-6").modaal();
+$(".quick-view-7").modaal();
+$(".quick-view-8").modaal();
+
+// Responsive nav menu
+
+$(".menu-btn").click(function() {
+    if ($(".menu-btn").prop("checked")) {
+        document.body.classList.add("stop-scrolling"); 
+    }
+    else {
+        document.body.classList.remove("stop-scrolling"); 
+    }
+});
