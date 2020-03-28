@@ -2025,11 +2025,9 @@ textarea {
     top: 68px;
   }
   >li {
-    @include media-query($xlarge-up) {
-      padding: 25px 0px;
-    }
+    padding: 25px 0px;
     @include media-query($large-down) {
-      padding: 25px;
+      margin: 0 25px;
       &:not(:last-child) {
         border-bottom: 1px solid #E1E6EB;
       }
@@ -7107,6 +7105,9 @@ $linklist-spacing-small: 12px;
     text-align: left;
     height: 100vh;
     z-index: 1;
+  }
+  @include media-query($small) {
+    padding: 0;
   }
 }
 
