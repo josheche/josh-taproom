@@ -27,10 +27,22 @@
                     <span class="product-price">$69.99</span>
                     <span class="product-description">This is the more text. Aberant terram pendebat. Lucis adsiduis consistere erant fert. Innabilis mollia bracchia di! Opifex lumina pulsant recessit ipsa flamina rudis! Fulgura effervescere levitate primaque inminet ad habendum super humanas. Sponte os sponte tanto frigore quanto nec fratrum! Quarum ultima diffundi terra aethera valles caecoque.</span>
                   </div>
-                  <div class="quick-view-aside">
-                    <div class="product-quantity">Quantity Counter Component</div>
-                    <div class="product-add-btn"><a href="#" class="btn">Add to Cart</a></div>
-                  </div>
+                  <form method="post" action="">
+                    <div class="quick-view-aside">
+                          <div class="product-quantity">
+                              <div class="dec quantity-btn">-</div>
+                              <div>
+                                <input class="quantity-input" type="text" name="item-count" id="item-count" value="1">
+                              </div>
+                              <div class="inc quantity-btn">+</div>
+                          </div>
+                          <div class="product-add-btn">
+                            <a href="#" class="btn">
+                              <input type="submit" value="Add to Cart" id="submit">
+                            </a>
+                          </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
