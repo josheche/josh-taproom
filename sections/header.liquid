@@ -1,13 +1,13 @@
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
   <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
-    <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+    <div class="site-header__mobile-nav">
       {% if section.settings.align_logo == 'center' %}
         {%- assign logo_classes = 'medium-up--one-third medium-up--push-one-third logo-align--center' -%}
       {% else %}
-        {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
+        {%- assign logo_classes = '' -%}
       {% endif %}
 
-      <div class="grid__item {{ logo_classes }}">
+      <div class="{{ logo_classes }}">
         {% comment %}
           Use the uploaded logo from theme settings if enabled.
           Site name gets precedence with H1 tag on homepage, div on other pages.
@@ -42,12 +42,12 @@
       </div>
 
       {% if section.settings.align_logo == 'left' %}
-      <nav class="grid__item medium-up--one-half site-nav-wrapper" id="AccessibleNav" role="navigation">
+      <nav class="site-nav-wrapper" id="AccessibleNav" role="navigation">
         {% include 'site-nav', linklist: section.settings.main_linklist %}
       </nav>
-      <div class="grid__item medium-up--one-quarter login-nav">
+      <div class="login-nav">
         <a href="#" class="login-btn">Log In</a>
-        <a href="#" class="cart-btn">{% include 'icon-cart' %}</a>
+        <a href="#" class="cart-btn"><span class="cart-quantity">10</span>{% include 'icon-cart' %}</a>
       </div>
       {% endif %}
 
