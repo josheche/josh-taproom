@@ -8117,13 +8117,88 @@ define(String.prototype, "padRight", "".padEnd);
 });
 },{"core-js/shim":"../node_modules/core-js/shim.js","regenerator-runtime/runtime":"../node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js","core-js/fn/regexp/escape":"../node_modules/core-js/fn/regexp/escape.js"}],"layouts/theme.js":[function(require,module,exports) {
 
+},{}],"scripts.js":[function(require,module,exports) {
+// Carousel
+$('.carousel-body').slick({
+  arrows: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  dots: false,
+  infinite: true,
+  responsive: [{
+    breakpoint: 990,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }, {
+    breakpoint: 750,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }, {
+    breakpoint: 560,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true
+    }
+  }]
+});
+$('.carousel-prev').click(function () {
+  $(this).parent().find('.carousel-body').slick('slickPrev');
+});
+$('.carousel-next').click(function (e) {
+  e.preventDefault();
+  $(this).parent().find('.carousel-body').slick('slickNext');
+}); // Quick View
+
+$(".quick-view-1").modaal();
+$(".quick-view-2").modaal();
+$(".quick-view-3").modaal();
+$(".quick-view-4").modaal();
+$(".quick-view-5").modaal();
+$(".quick-view-6").modaal();
+$(".quick-view-7").modaal();
+$(".quick-view-8").modaal(); // Responsive nav menu
+
+$(".menu-btn").click(function () {
+  if ($(".menu-btn").prop("checked")) {
+    document.body.classList.add("stop-scrolling");
+  } else {
+    document.body.classList.remove("stop-scrolling");
+  }
+}); // Incrementer
+
+$(".quantity-btn").on("click", function () {
+  var $button = $(this);
+  var oldValue = $button.parent().find("input").val();
+
+  if ($button.text() == "+") {
+    var newVal = parseFloat(oldValue) + 1;
+  } else {
+    // Don't allow decrementing below zero
+    if (oldValue > 0) {
+      var newVal = parseFloat(oldValue) - 1;
+    } else {
+      newVal = 0;
+    }
+  }
+
+  $button.parent().find("input").val(newVal);
+});
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("babel-polyfill");
 
 require("./layouts/theme");
-},{"babel-polyfill":"../node_modules/babel-polyfill/lib/index.js","./layouts/theme":"layouts/theme.js"}],"../../../.nvm/versions/node/v12.16.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+require("./scripts");
+},{"babel-polyfill":"../node_modules/babel-polyfill/lib/index.js","./layouts/theme":"layouts/theme.js","./scripts":"scripts.js"}],"../../../.nvm/versions/node/v13.11.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8151,7 +8226,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61955" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49393" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -8327,5 +8402,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../.nvm/versions/node/v12.16.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../.nvm/versions/node/v13.11.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/bundle.js.map

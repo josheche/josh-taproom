@@ -1,0 +1,118 @@
+<section class="carousel">
+  <div class="carousel-container">
+    <div class="carousel-header">
+      <h3>{{ section.settings.carouselTitle }}</h3>
+    </div>
+    {% if section.blocks.size > 0 %}
+    <div class="carousel-body">
+      {% for block in section.blocks %}
+      <div>
+        <div class="carousel-slide" style="background-image: url({{ block.settings.slideImg | img_url: 'original' }})">
+          <div class="overlay">
+            <a href="#quick-view-{{ forloop.index }}" class="btn quick-view-{{ forloop.index }}">{{ block.settings.linkText }}</a>
+            <div id="quick-view-{{ forloop.index }}" class="display-none">
+              <div class="quick-view-container">
+                <div class="quick-view-figure" style="background-image: url({{ block.settings.slideImg | img_url: 'original' }})"></div>
+                <div class="quick-view-content">
+                  <div class="quick-view-header">
+                    <div class="quick-view-tag">
+                      <span class="product-vendor">Vendor Name</span>
+                      <span class="product-sku">SKU-001</span>
+                    </div>
+                    <div class="quick-view-title">
+                      <span class="product-name">Product Name</span>
+                    </div>
+                  </div>
+                  <div class="quick-view-body">
+                    <span class="product-price">$69.99</span>
+                    <span class="product-description">This is the more text. Aberant terram pendebat. Lucis adsiduis consistere erant fert. Innabilis mollia bracchia di! Opifex lumina pulsant recessit ipsa flamina rudis! Fulgura effervescere levitate primaque inminet ad habendum super humanas. Sponte os sponte tanto frigore quanto nec fratrum! Quarum ultima diffundi terra aethera valles caecoque.</span>
+                  </div>
+                  <form method="post" action="">
+                    <div class="quick-view-aside">
+                          <div class="product-quantity">
+                              <div class="dec quantity-btn">-</div>
+                              <div>
+                                <input class="quantity-input" type="text" name="item-count" id="item-count" value="1">
+                              </div>
+                              <div class="inc quantity-btn">+</div>
+                          </div>
+                          <div class="product-add-btn">
+                            <a href="#" class="btn">
+                              <input type="submit" value="Add to Cart" id="submit">
+                            </a>
+                          </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% if block.settings.onSale != false %}
+          <div class="overlay-sale">
+            <span class="overlay-circle">Sale</span>
+          </div>
+          {% endif %}
+        </div>
+        <div class="carousel-slide-info">
+          <span>This is a long product name over two lines.</span>
+          <span>from $69.99</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <button type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Previous slide" role="button" aria-disabled="true">{% include 'icon-chevron-left' %}</button>
+  <button type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next slide" role="button">{% include 'icon-chevron-right' %}</button>
+</section>
+
+{% schema %}
+{
+  "name": "Carousel",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "id": "carouselTitle",
+      "type": "text",
+      "label": "Heading",
+      "default": "Featured Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "url",
+          "id": "slideLink",
+          "label": "Slide link"
+        },
+        {
+          "type": "text",
+          "id": "linkText",
+          "label": "Link text"
+        },
+        {
+          "type": "image_picker",
+          "id": "slideImg",
+          "label": "Add img for slide"
+        },
+        {  
+          "type": "checkbox",
+          "id": "onSale",
+          "label": "On Sale",
+          "default": false,
+          "info": "Indicate whether item is on sale."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

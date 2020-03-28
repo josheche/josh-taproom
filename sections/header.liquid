@@ -1,63 +1,67 @@
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
   <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
-    <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+    <div class="site-header__mobile-nav">
       {% if section.settings.align_logo == 'center' %}
         {%- assign logo_classes = 'medium-up--one-third medium-up--push-one-third logo-align--center' -%}
       {% else %}
-        {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
+        {%- assign logo_classes = '' -%}
       {% endif %}
 
-      <div class="grid__item {{ logo_classes }}">
+      <div class="{{ logo_classes }}">
         {% comment %}
           Use the uploaded logo from theme settings if enabled.
           Site name gets precedence with H1 tag on homepage, div on other pages.
         {% endcomment %}
         {% if request.page_type == 'index' %}
-          <h1 class="h2 site-header__logo">
-          {% else %}
-            <div class="h2 site-header__logo">
-            {% endif %}
-            {% if section.settings.logo %}
-              {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-              <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
-                {% capture logo_alt %}
-                  {{ section.settings.logo.alt | default: shop.name }}
-                {% endcapture %}
-                <img class="lazyload js" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ logo_alt | escape }}" style="max-width: {{ section.settings.logo_max_width }}px">
-                <noscript>
-                  {% capture image_size %}
-                    {{ section.settings.logo_max_width | escape }}x
-                  {% endcapture %}
-                  <img src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" style="max-width: {{ section.settings.logo_max_width }}px;">
-                </noscript>
-              </a>
-            {% else %}
-              <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
-            {% endif %}
-            {% if request.page_type == 'index' %}
-            </h1>
+        <h1 class="h2 site-header__logo">
         {% else %}
-          </div>
+        <div class="h2 site-header__logo">
+        {% endif %}
+        {% if section.settings.logo %}
+          {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+            {% capture logo_alt %}
+              {{ section.settings.logo.alt | default: shop.name }}
+            {% endcapture %}
+            <img class="lazyload js" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ logo_alt | escape }}" style="max-width: {{ section.settings.logo_max_width }}px">
+            <noscript>
+              {% capture image_size %}
+                {{ section.settings.logo_max_width | escape }}x
+              {% endcapture %}
+              <img src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" style="max-width: {{ section.settings.logo_max_width }}px;">
+            </noscript>
+          </a>
+        {% else %}
+          <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+        {% endif %}
+        {% if request.page_type == 'index' %}
+        </h1>
+        {% else %}
+        </div>
         {% endif %}
       </div>
 
       {% if section.settings.align_logo == 'left' %}
-        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
-          {% include 'site-nav', linklist: section.settings.main_linklist %}
-        </nav>
+      <nav class="site-nav-wrapper" id="AccessibleNav" role="navigation">
+        {% include 'site-nav', linklist: section.settings.main_linklist %}
+      </nav>
+      <div class="login-nav">
+        <a href="#" class="login-btn">Log In</a>
+        <a href="#" class="cart-btn"><span class="cart-quantity">10</span>{% include 'icon-cart' %}</a>
+      </div>
       {% endif %}
+
     </div>
   </header>
 
   {% if section.settings.align_logo == 'center' %}
-    <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
-      {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
-    </nav>
+  <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
+    {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+  </nav>
   {% endif %}
 </div>
 
 {% schema %}
-
 {
   "name": {
     "da": "Overskrift",
@@ -81,6 +85,7 @@
     "zh-TW": "標頭"
   },
   "settings": [
+    
     {
       "type": "radio",
       "id": "align_logo",
@@ -466,6 +471,11 @@
         "zh-TW": "文字"
       },
       "default": "#fff"
+    },
+    {
+      "type": "image_picker",
+      "id": "featuredImage",
+      "label": "Featured Image"
     }
   ]
 }
