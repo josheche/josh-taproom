@@ -80,4 +80,5 @@ $(".quantity-btn").on("click", function() {
         newVal = 0;
       }
     }
+    $button.parent().find("input").val(newVal);
 });
