@@ -9,98 +9,112 @@
 {% endcomment %}
 <input id="menu-btn" class="menu-btn" type="checkbox" />
 <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-<ul class="site-nav list--inline{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}" id="SiteNav">
-  {% for link in linklists[linklist].links %}
-    {%- assign child_list_handle = link.title | handleize -%}
+<div class="site-nav">
+  <ul class="site-nav-list list--inline{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}" id="SiteNav">
+    {% for link in linklists[linklist].links %}
+      {%- assign child_list_handle = link.title | handleize -%}
 
-    {% comment %}
-      Check if third-level nav exists on each parent link.
-    {% endcomment %}
-    {%- assign three_level_nav = false -%}
-    {% if link.links != blank %}
-      {% if link.levels == 2 %}
-        {%- assign three_level_nav = true -%}
+      {% comment %}
+        Check if third-level nav exists on each parent link.
+      {% endcomment %}
+      {%- assign three_level_nav = false -%}
+      {% if link.links != blank %}
+        {% if link.levels == 2 %}
+          {%- assign three_level_nav = true -%}
+        {% endif %}
       {% endif %}
-    {% endif %}
 
-    {% if link.links != blank %}
-      <li class="site-nav--has-dropdown{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
-        <input id="dropdown-input" class="dropdown-input" type="checkbox" value="0" />
-        <label class="dropdown-link site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" for="dropdown-input" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
-          <span class="site-nav__label">{{ link.title | escape }}</span>{% include 'icon-chevron-down' %}
-        </label>
+      {% if link.links != blank %}
+        <li class="site-nav--has-dropdown{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
+          <input id="dropdown-input" class="dropdown-input" type="checkbox" value="0" />
+          <label class="dropdown-link site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" for="dropdown-input" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+            <span class="site-nav__label">{{ link.title | escape }}</span>{% include 'icon-chevron-down' %}
+          </label>
 
-        <div class="site-nav__dropdown{% if three_level_nav %} site-nav__dropdown--centered{% endif %}" id="SiteNavLabel-{{ child_list_handle }}">
-          {% if three_level_nav %}
-            <div class="site-nav__childlist">
-              <ul class="site-nav__childlist-grid">
-                {% if link.links != blank %}
-                  {% for childlink in link.links %}
-                    <li class="site-nav__childlist-item">
-                      <a href="{{ childlink.url }}"
-                        class="site-nav__link site-nav__child-link site-nav__child-link--parent"
-                        {% if childlink.current %} aria-current="page"{% endif %}
-                      >
-                        <span class="site-nav__label">{{ childlink.title | escape }}</span>
-                        <span class="site-nav__label-border"></span>
-                      </a>
-
-                      {% if childlink.links != blank %}
-                        <ul class="site-nav__grandchildlist-grid">
-                        {% for grandchildlink in childlink.links %}
-                          <li class="site-nav__grandchildlist-item">
-                            <a href="{{ grandchildlink.url }}"
-                            class="site-nav__link site-nav__child-link"
-                            {% if grandchildlink.current %} aria-current="page"{% endif %}
-                          >
-                              <span class="site-nav__label">{{ grandchildlink.title | escape }}</span>
-                            </a>
-                          </li>
-                        {% endfor %}
-                        </ul>
-                      {% endif %}
-
-                    </li>
-                  {% endfor %}
-                {% endif %}
-                  <li class="site-nav__childlist-item menu-image">
-                    <div class="menu-image-bg" style="background-image:url({{ section.settings.featuredImage | img_url: 'original' }});">
-                      <div class="menu-overlay">
-                        <a href="#" class="btn">
-                          <span class="menu-image-text">Shop Men's</span>
+          <div class="site-nav__dropdown{% if three_level_nav %} site-nav__dropdown--centered{% endif %}" id="SiteNavLabel-{{ child_list_handle }}">
+            {% if three_level_nav %}
+              <div class="site-nav__childlist">
+                <ul class="site-nav__childlist-grid">
+                  {% if link.links != blank %}
+                    {% for childlink in link.links %}
+                      <li class="site-nav__childlist-item">
+                        <a href="{{ childlink.url }}"
+                          class="site-nav__link site-nav__child-link site-nav__child-link--parent"
+                          {% if childlink.current %} aria-current="page"{% endif %}
+                        >
+                          <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                          <span class="site-nav__label-border"></span>
                         </a>
+
+                        {% if childlink.links != blank %}
+                          <ul class="site-nav__grandchildlist-grid">
+                          {% for grandchildlink in childlink.links %}
+                            <li class="site-nav__grandchildlist-item">
+                              <a href="{{ grandchildlink.url }}"
+                              class="site-nav__link site-nav__child-link"
+                              {% if grandchildlink.current %} aria-current="page"{% endif %}
+                            >
+                                <span class="site-nav__label">{{ grandchildlink.title | escape }}</span>
+                              </a>
+                            </li>
+                          {% endfor %}
+                          </ul>
+                        {% endif %}
+
+                      </li>
+                    {% endfor %}
+                  {% endif %}
+                    <li class="site-nav__childlist-item menu-image">
+                      <div class="menu-image-bg" style="background-image:url({{ section.settings.featuredImage | img_url: 'original' }});">
+                        <div class="menu-overlay">
+                          <a href="#" class="btn">
+                            <span class="menu-image-text">Shop Men's</span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
+                    </li>
+                </ul>
+              </div>
+
+            {% else %}
+              <ul>
+                {% for childlink in link.links %}
+                  <li>
+                    <a href="{{ childlink.url }}"
+                    class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
+                    {% if childlink.current %} aria-current="page"{% endif %}
+                    >
+                      <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                    </a>
                   </li>
+                {% endfor %}
               </ul>
-            </div>
+            {% endif %}
+          </div>
+        </li>
+      {% else %}
+        <li {% if link.active %} class="site-nav--active"{% endif %}>
+          <a href="{{ link.url }}"
+            class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+            {% if link.current %} aria-current="page"{% endif %}
+          >
+            <span class="site-nav__label">{{ link.title | escape }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
 
-          {% else %}
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}"
-                  class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
-                  {% if childlink.current %} aria-current="page"{% endif %}
-                  >
-                    <span class="site-nav__label">{{ childlink.title | escape }}</span>
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
+  </ul>
+  <div class="mobile-nav-footer">
+    <ul>
+      <li class="nav-footer-icons">
+        <a href="#">{% include 'icon-search' %}</a>
+        <a href="#">{% include 'icon-cart-white' %}</a>
       </li>
-    {% else %}
-      <li {% if link.active %} class="site-nav--active"{% endif %}>
-        <a href="{{ link.url }}"
-          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
-          {% if link.current %} aria-current="page"{% endif %}
-        >
-          <span class="site-nav__label">{{ link.title | escape }}</span>
-        </a>
+      <li class="nav-footer-links">
+        <a href="#">Contact</a>
+        <a href="#">Login</a>
       </li>
-    {% endif %}
-  {% endfor %}
-
-</ul>
+    </ul>
+  </div>
+</div>
