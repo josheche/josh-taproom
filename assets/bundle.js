@@ -8172,27 +8172,6 @@ $(".menu-btn").click(function () {
     document.body.classList.remove("stop-scrolling");
   }
 }); // Incrementer
-// $(".quantity-btn").on("click", function() {
-//     var $button = $(this);
-//     var oldValue = $button.parent().find("#item-count-1").val();
-//     if ($button.text() == "+") {
-//         var newVal = parseFloat(oldValue) + 1;
-//     } else {
-//     // Don't allow decrementing below zero
-//         if (oldValue > 0) {
-//             var newVal = parseFloat(oldValue) - 1;
-//         } else {
-//             newVal = 0;
-//         }
-//     }
-//     $button.parent().find("#item-count-1").val(newVal);
-//     $button.parent().find("#item-count-1").attr(value, newVal);
-// });
-// $("input#submit-btn-1").on("click", function(e) {
-//     e.preventDefault();
-//     var itemCount = $("#item-count-1").val();
-//     $("#cartQuantity").attr(value, (itemCount))
-// });
 
 $(".quantity-btn").on("click", function () {
   var $button = $(this);
@@ -8211,10 +8190,11 @@ $(".quantity-btn").on("click", function () {
 
   $button.parent().find("input").val(newVal);
   $button.parent().find("input").attr(value, newVal);
-});
-$('#submit-btn-1"]').on("click", function (e) {
+}); // Cart icon quantity
+
+$("#submit-btn-1").on("click", function (e) {
   e.preventDefault();
-  var itemQuantity = $('#item-count-1"]');
+  var itemQuantity = $("#item-count-1");
   var cartQuantity = $(".cart-quantity");
   $(cartQuantity).val(itemQuantity.val());
 });
@@ -8296,7 +8276,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63941" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53888" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
