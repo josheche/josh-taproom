@@ -67,18 +67,93 @@ $(".menu-btn").click(function() {
 
 // Incrementer
 
-$(".quantity-btn").on("click", function() {
+// $(".quantity-btn").on("click", function() {
+//     var $button = $(this);
+//     var oldValue = $button.parent().find("#item-count-1").val();
+//     if ($button.text() == "+") {
+//         var newVal = parseFloat(oldValue) + 1;
+//     } else {
+//     // Don't allow decrementing below zero
+//         if (oldValue > 0) {
+//             var newVal = parseFloat(oldValue) - 1;
+//         } else {
+//             newVal = 0;
+//         }
+//     }
+//     $button.parent().find("#item-count-1").val(newVal);
+//     $button.parent().find("#item-count-1").attr(value, newVal);
+// });
+
+// $("input#submit-btn-1").on("click", function(e) {
+//     e.preventDefault();
+//     var itemCount = $("#item-count-1").val();
+//     $("#cartQuantity").attr(value, (itemCount))
+// });
+
+$(".quantity-btn").on("click", function () {
     var $button = $(this);
     var oldValue = $button.parent().find("input").val();
+  
     if ($button.text() == "+") {
-        var newVal = parseFloat(oldValue) + 1;
-      } else {
-     // Don't allow decrementing below zero
+      var newVal = parseFloat(oldValue) + 1;
+    } else {
+      // Don't allow decrementing below zero
       if (oldValue > 0) {
         var newVal = parseFloat(oldValue) - 1;
       } else {
         newVal = 0;
       }
     }
+  
     $button.parent().find("input").val(newVal);
+    $button.parent().find("input").attr(value, newVal);
+});
+
+$('#submit-btn-1"]').on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $('#item-count-1"]');
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-2").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-2");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-3").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-3");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-4").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-4");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-5").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-5");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-6").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-6");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-7").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-7");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
+});
+$("#submit-btn-8").on("click", function (e) {
+    e.preventDefault();
+    var itemQuantity = $("#item-count-8");
+    var cartQuantity = $(".cart-quantity");
+    $(cartQuantity).val(itemQuantity.val());
 });
